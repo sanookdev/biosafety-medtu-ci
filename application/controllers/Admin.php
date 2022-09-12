@@ -5,7 +5,7 @@ class Admin extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        if($this->session->userdata('level') != 'admin'){
+        if($this->session->userdata('userRole') != '1'){
             redirect('user','refresh');
         }
     }

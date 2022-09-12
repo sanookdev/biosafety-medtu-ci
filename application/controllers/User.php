@@ -8,36 +8,46 @@ class User extends CI_Controller {
 	}
 	public function index()
 	{
-		print_r($_SESSION);
+		// print_r($_SESSION);
 		$this->load->view('myCss');
 		$this->load->view('login_view');
 		$this->load->view('myJs');
 	}
 	public function check()
 	{
-		if($this->input->post('username') == ''){
+		if($this->input->post('username') == '' || $this->input->post('password') == ''){
 			$this->load->view('user');
 		}else{
 			$username = strtoupper($this->input->post('username'));
-			$password = sha1($this->input->post('password'));
-			
-			$result = $this->User_model->fetch_user_login($username,$password);
-
-			// echo $result;
-
-			echo "<pre>";
-			print_r($result);
-			echo "</pre>";
-			// if($username == 'ADMIN' && $password == 'admin'){
-			// 	$this->session->set_userdata('level','admin');
-			// 	$this->session->set_userdata('user',$username);
-			// 	redirect('admin');
-			// }else{
-	
-			// 	$this->session->set_userdata('level','user');
-			// 	$this->session->set_userdata('user',$username);
-			// 	echo 'username or password is invalid';
-			// }
+			$password = $this->input->post('password');
+			$result = $this->User_model->fetch_user_login($username,sha1($password));
+			if(!empty($result)){
+				$sess = array(
+					'userName' => $result->userName,
+					'userRole' => $result->userRole
+				);
+				$this->session->set_userdata($sess);
+				print_r($_SESSION);
+			}else{
+				$jsonurl = 'http://203.131.209.236/_authen/_authen.php?user_login=' . $username;
+				$json = file_get_contents($jsonurl);
+				$returnInfo = json_decode($json, true);
+				if($returnInfo['chkData'] == md5($password)){
+					$sess = array(
+						'userName' => $username,
+						'userRole' => '3'
+					);
+					$this->session->set_userdata($sess);
+					print_r($_SESSION);
+				}else{
+					$this->session->unset_userdata(array('userName','userRole'));
+					redirect('user');
+				}
+			}
 		}
+	}
+	public function logout(){
+		$this->session->sess_destroy();
+		redirect('user');
 	}
 }
