@@ -5,6 +5,19 @@ class User extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('User_model');
+
+		if(isset($_SESSION['userName'])){
+			if($_SESSION['userRole'] == '1'){
+				echo "R U ADMIN";
+				redirect('admin');
+			}else{
+				echo "R U USER";
+				redirect('user');
+			}
+			// echo "SESSION IS SET";
+		}else{
+			echo "YOU DONT HAVE SESSION"; 
+		}
 	}
 	public function index()
 	{
