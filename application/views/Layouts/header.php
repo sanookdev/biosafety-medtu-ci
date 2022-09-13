@@ -53,10 +53,25 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#" role="button">
+            <a class="nav-link" onclick="confirm_logout()" role="button">
                 <i class="fas fa-sign-out-alt"></i>
             </a>
         </li>
     </ul>
 </nav>
 <!-- /.navbar -->
+
+
+<script>
+$(document).ready(() => {
+    confirm_logout = () => {
+        alertify.confirm("Are you sure you want to logout?",
+            function() {
+                window.location.href = "<?= site_url('member/logout');?>";
+            },
+            function() {
+                alertify.error('Cancel');
+            });
+    }
+})
+</script>

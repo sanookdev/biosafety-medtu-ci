@@ -1,10 +1,9 @@
-$(document).ready(function() {
-    const urlContentPath = './views/';
+$(document).ready(function () {
 
     // this function use for load page content
-    loadPage = (page = 'home.php') => {
+    loadPage = (page = 'admin_report') => {
         console.log(page.split('.')[0])
-        $('.contentUrl').load(urlContentPath + page);
+        $('.contentUrl').load(page);
 
     }
 

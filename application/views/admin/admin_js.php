@@ -11,4 +11,11 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdn.datatables.net/fixedheader/3.2.3/js/dataTables.fixedHeader.min.js"></script>
 
+<script src="<?= base_url('js/bootstrap/js/bootstrap.bundle.min.js');?>"></script>
+<script src="<?= base_url('js/sparklines/sparkline.js');?>"></script>
+<script src="<?= base_url('js/summernote/summernote-bs4.min.js');?>"></script>
+<script src="<?= base_url('js/overlayScrollbars/js/jquery.overlayScrollbars.min.js');?>"></script>
+<script src="<?= base_url('js/admin/js/adminlte.js');?>"></script>
 <script src="<?= base_url('js/sidebarEvents.js');?>"></script>
+
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
