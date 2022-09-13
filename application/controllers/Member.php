@@ -55,6 +55,20 @@ class Member extends CI_Controller {
 			}
 		}
 	}
+	public function signup(){
+		$this->load->view('myCss');
+		$this->load->view('register_view');
+		$this->load->view('myJs');
+	}
+
+	public function create(){
+		$username = strtoupper($this->input->post('username_regis'));
+		$password = strtoupper(sha1($this->input->post('password_regis')));
+		if($username != '' && $password != ''){
+			$result = $this->Member_model->create_user($username,$password);
+		}
+	}
+
 	public function logout(){
 		$this->session->sess_destroy();
 		redirect('member');

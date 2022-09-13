@@ -54,3 +54,7 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['logout'] = 'Member/logout';
+
+// admin
+$route['setting'] = 'Admin/setting';
+$route['report'] = 'Admin/report';

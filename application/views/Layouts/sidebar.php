@@ -28,7 +28,7 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                     data-accordion="false">
                     <li class="nav-item">
-                        <a href="#dashboard" class="nav-link active">
+                        <a href="<?= site_url('admin');?>" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Dashboard
@@ -36,32 +36,18 @@
                         </a>
                     </li>
 
-                    <!-- เมนูรายงาน -->
-                    <li class="nav-item nav_reportMenu">
-                        <!-- <a href="#reports" class="nav-link" onclick="activityClassNavLink(this,'report')"> -->
-                        <a href="#reports" class="nav-link">
-                            <i class="nav-icon ion ion-stats-bars"></i>
+                    <li class="nav-item">
+                        <a href="<?= site_url('report');?>" class="nav-link">
+                            <i class="far fa-list-alt nav-icon"></i>
                             <p>
-                                รายงาน
-                                <i class="fas fa-angle-left right"></i>
+                                โครงการทั้งหมด
                             </p>
                         </a>
-                        <ul class="nav nav-treeview ">
-                            <li class="nav-item">
-                                <a href="#" class="nav-link" onclick="report_menu(1,this)">
-                                    <!-- <a href="#" class="nav-link"> -->
-                                    <i class="far fa-circle nav-icon"></i>
-                                    <p>โครงการทั้งหมด</p>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
-                    <!-- เมนูรายงาน (end) -->
-
                     <!-- เมนูตั้งค่า -->
                     <li class="nav-item " style="border-bottom:1px solid #4f5962;">
                         <!-- <a href="#settings" class="nav-link " onclick="activityClassNavLink(this,'settings')"> -->
-                        <a href="#settings" class="nav-link ">
+                        <a href="<?= site_url('setting');?>" class="nav-link ">
                             <i class="nav-icon fas fa-file-medical"></i>
                             <p>
                                 นำเข้าข้อมูล

@@ -14,17 +14,27 @@ class Admin extends CI_Controller {
 	{
         $this->load->view('admin/admin_css');
         $this->load->view('admin/admin_js');
-        $this->load->view('Layouts/header');
         $this->load->view('Layouts/sidebar');
+        $this->load->view('Layouts/header');
 		$this->load->view('admin/admin_view');
         $this->load->view('Layouts/footer');
 	}
+
     public function report(){
         $this->load->view('admin/admin_css');
         $this->load->view('admin/admin_js');
-        $this->load->view('Layouts/header');
         $this->load->view('Layouts/sidebar');
+        $this->load->view('Layouts/header');
 		$this->load->view('admin/report');
+        $this->load->view('Layouts/footer');
+    }
+
+    public function setting(){
+        $this->load->view('admin/admin_css');
+        $this->load->view('admin/admin_js');
+        $this->load->view('Layouts/sidebar');
+        $this->load->view('Layouts/header');
+		$this->load->view('admin/setting');
         $this->load->view('Layouts/footer');
     }
 }
