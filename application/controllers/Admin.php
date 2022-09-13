@@ -7,6 +7,8 @@ class Admin extends CI_Controller {
         parent::__construct();
         if($this->session->userdata('userRole') != '1'){
             redirect('user','refresh');
+        }else{
+            $this->load->model('Admin_model');
         }
     }
 
@@ -22,11 +24,21 @@ class Admin extends CI_Controller {
 	}
 
     public function report(){
+
+        $data['result'] = $this->Admin_model->fetch_projectAll();
+
+        // echo "<pre>";
+        // print_r($data);
+        // echo "</pre>";
+
+
+        // exit;
+        
         $this->load->view('admin/admin_css');
         $this->load->view('admin/admin_js');
         $this->load->view('Layouts/sidebar');
         $this->load->view('Layouts/header');
-		$this->load->view('admin/report');
+		$this->load->view('admin/report_view',$data);
         $this->load->view('Layouts/footer');
     }
 

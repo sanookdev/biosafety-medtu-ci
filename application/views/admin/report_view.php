@@ -58,8 +58,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="col-12">
                     <div class="card">
                         <!-- /.card-header -->
-                        <div class="card-body table-reportall">
+                        <div class="card-body">
 
+                            <table class="table table-bordered table-stripped table_report">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Code</th>
+                                        <th>Name</th>
+                                        <th>#</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <? foreach ($result as $rs) {?>
+                                    <tr>
+                                        <td><?= $rs->projectId;?></td>
+                                        <td><?= $rs->projectCode;?></td>
+                                        <td><?= $rs->projectNameTH;?></td>
+                                        <td></td>
+                                    </tr>
+                                    <?}?>
+
+                                </tbody>
+                            </table>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -75,6 +96,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <script type="text/javascript">
     var rootUrl = location.hostname;
     $(document).ready(function() {
+
+        $('.table_report').DataTable();
 
         var pId = '';
         var table = '';
