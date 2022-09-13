@@ -43,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">โครงการทั้งหมด</h1>
+                        <h1 class="m-0">Import Data</h1>
                     </div>
                     <!-- /.col -->
                 </div>
@@ -53,7 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <!-- /.content-header -->
         <div class="container-fluid">
-            this is report page
+            this is setting page
             <div class="row">
                 <div class="col-12">
                     <div class="card">
