@@ -27,7 +27,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 </div>
                 <div class="card-body">
-                    <form action="<?= site_url('user/check');?>" method="post">
+                    <?
+                            if($this->session->flashdata('err_message')){
+                                echo "<p class = 'alert alert-warning'>".($this->session->flashdata('err_message')). "</p>";
+                            }
+                        ?>
+                    <form action="<?= site_url('member/check');?>" method="post">
                         <div class="form-group error-message">
                         </div>
                         <div class="input-group form-group">

@@ -1,5 +1,5 @@
 <?
-class User_model extends CI_Model{
+class Member_model extends CI_Model{
     public function fetch_user_login($username,$password){
         $this->db->select('userId,userName,userRole');
         $this->db->where('userName',$username);

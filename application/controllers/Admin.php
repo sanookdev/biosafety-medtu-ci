@@ -8,6 +8,7 @@ class Admin extends CI_Controller {
         if($this->session->userdata('userRole') != '1'){
             redirect('user','refresh');
         }
+        print_r($_SESSION);
     }
 
 	public function index()
