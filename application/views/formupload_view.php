@@ -62,7 +62,9 @@ $(document).ready(function() {
                 $("#btnUpload").prop('disabled', false);
                 if ($.isEmptyObject(result.error_message)) {
                     $(".result").html(result.success_message);
+                    console.log(0);
                 } else {
+                    console.log(1);
                     $(".sub-result").html(result.error_message);
                 }
                 $(".user-loader").hide();

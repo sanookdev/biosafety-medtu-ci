@@ -10,10 +10,10 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>Name</th>
-                        <th>Mobile</th>
-                        <th>Email</th>
-                        <th>City</th>
+                        <th>Code</th>
+                        <th>Name TH</th>
+                        <th>Leader</th>
+                        <th>Created</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -23,10 +23,10 @@
                 ?>
                     <tr>
                         <td><?php ++$i; ?></td>
-                        <td><?php echo $row->name; ?></td>
-                        <td><?php echo $row->country_code.$row->mobile; ?></td>
-                        <td><?php echo $row->email; ?></td>
-                        <td><?php echo $row->city; ?></td>
+                        <td><?php echo $row->projectCode; ?></td>
+                        <td><?php echo $row->projectNameTH; ?></td>
+                        <td><?php echo $row->projectLeader; ?></td>
+                        <td><?php echo $row->projectCreated; ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>

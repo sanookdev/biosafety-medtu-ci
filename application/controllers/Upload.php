@@ -24,8 +24,8 @@ class Upload extends CI_Controller {
 	
 	public function display() {
     	$data 	= [];
-    	$data ["result"] = $this->user->get_all();
-    	$this->load->view("index");
+    	$data ["result"] = $this->upload->get_all();
+    	$this->load->view("formupload_view");
     }
 
 	public function import() {
@@ -49,7 +49,6 @@ class Upload extends CI_Controller {
 			$spreadsheet 	= $reader->load($file_name);
 			$sheet_data 	= $spreadsheet->getActiveSheet()->toArray();
 			$list 			= [];
-            // print_r($this);
 			foreach($sheet_data as $key => $val) {
 				if($key != null && $val[0] != null) {
                     $list[] = array(
@@ -91,11 +90,11 @@ class Upload extends CI_Controller {
 				$result 	= $this->upload_model->add_batch($list);
 				if($result) {
 					$json = [
-						'success_message' 	=> "All Entries are imported successfully.",
+						'success_message' 	=> "Something went wrong. Please try again.",
 					];
 				} else {
 					$json = [
-						'error_message' 	=> "Something went wrong. Please try again."
+						'error_message' 	=> "No new record is found."
 					];
 				}
 			} else {
@@ -104,7 +103,7 @@ class Upload extends CI_Controller {
 				];
 			}
 		}
-		echo json_encode($result);
+		echo json_encode($json);
 	}
 
 	public function upload_config($path) {
