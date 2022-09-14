@@ -58,3 +58,5 @@ $route['logout'] = 'Member/logout';
 // admin
 $route['setting'] = 'Admin/setting';
 $route['report'] = 'Admin/report';
+
+$route['excel/import']      = 'Upload/import';
