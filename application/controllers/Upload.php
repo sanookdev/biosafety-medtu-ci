@@ -34,7 +34,7 @@ class Upload extends CI_Controller {
 		$this->upload_config($path);
 		if (!$this->upload->do_upload('file')) {
 			$json = [
-				'error_message' => showErrorMessage($this->upload->display_errors()),
+				'error_message' => $this->upload->display_errors(),
 			];
 		} else {
 			$file_data 	= $this->upload->data();
@@ -83,18 +83,21 @@ class Upload extends CI_Controller {
             // print_r($list);
             // echo "</pre>";
             // exit;
+
+			// echo count($list);
+			// exit;
 			if(file_exists($file_name))
 				unlink($file_name);
 			if(count($list) > 0) {
-                $this->table = 'projects';
-				$result 	= $this->upload_model->add_batch($list);
+				$this->table = 'projects';
+				$result = $this->upload_model->add_batch($list);
 				if($result) {
 					$json = [
-						'success_message' 	=> "Something went wrong. Please try again.",
+						'success_message' 	=> "upload complete",
 					];
 				} else {
 					$json = [
-						'error_message' 	=> "No new record is found."
+						'error_message' 	=> "Something went wrong. Please try again."
 					];
 				}
 			} else {

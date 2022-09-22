@@ -9,6 +9,7 @@ class Member extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('myCss');
+		$this->load->view('bgAnimation');
 		$this->load->view('login_view');
 		$this->load->view('myJs');
 	}

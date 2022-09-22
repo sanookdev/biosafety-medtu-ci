@@ -24,7 +24,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <span onclick="window.open('https://www.youtube.com','_blank')"><i
                                 class="fab fa-youtube-square"></i></span>
                     </div>
-
                 </div>
                 <div class="card-body">
                     <?
