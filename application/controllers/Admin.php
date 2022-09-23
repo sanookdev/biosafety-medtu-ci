@@ -37,6 +37,7 @@ class Admin extends CI_Controller {
         $this->load->view('admin/admin_css');
         $this->load->view('admin/admin_js');
         $this->load->view('Layouts/sidebar');
+        $this->load->view('Layouts/navbar');
         $this->load->view('Layouts/header');
 		$this->load->view('admin/report_view',$data);
         $this->load->view('Layouts/footer');
@@ -46,8 +47,9 @@ class Admin extends CI_Controller {
         $this->load->view('admin/admin_css');
         $this->load->view('admin/admin_js');
         $this->load->view('Layouts/sidebar');
+        $this->load->view('Layouts/navbar');
         $this->load->view('Layouts/header');
-		$this->load->view('admin/setting');
+		$this->load->view('admin/admin_setting');
         $this->load->view('Layouts/footer');
     }
 }

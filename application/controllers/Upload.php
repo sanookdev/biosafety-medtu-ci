@@ -11,15 +11,23 @@ class Upload extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		// Load Model
-		$this->load->model('upload_model');
 		$this->ip_address    = $_SERVER['REMOTE_ADDR'];
 		$this->datetime 	    = date("Y-m-d H:i:s");
+		if($this->session->userdata('userRole') != '1'){
+            redirect('user','refresh');
+        }else{
+			$this->load->model('upload_model');
+		}
 	}
 	
 	public function index() {
         $this->load->view('admin/admin_css');
         $this->load->view('admin/admin_js');
-	    $this->load->view("formupload_view");
+		$this->load->view('Layouts/header');
+        $this->load->view('Layouts/navbar');
+        $this->load->view('Layouts/sidebar');
+	    $this->load->view('formupload_view');
+		$this->load->view('Layouts/footer');
 	}
 	
 	public function display() {
@@ -74,18 +82,9 @@ class Upload extends CI_Controller {
                         'projectExtendDateEnd' => $val[20],
                         'projectDateClose' => $val[21],
                         'projectStatus' => $val[22],
-                        'projectCreated' => $val[23],
                     );
 				}
 			}
-
-            // echo "<pre>";
-            // print_r($list);
-            // echo "</pre>";
-            // exit;
-
-			// echo count($list);
-			// exit;
 			if(file_exists($file_name))
 				unlink($file_name);
 			if(count($list) > 0) {
