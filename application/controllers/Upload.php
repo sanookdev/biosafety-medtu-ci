@@ -36,6 +36,12 @@ class Upload extends CI_Controller {
     	$this->load->view("formupload_view");
     }
 
+	public function date_customFormat($date){
+		$old = explode('/',$date);
+		$new = $old[2] . "-" . (($old[0] < 10) ? '0'. $old[0] : $old[0]) . "-" . $old[1];
+		return $new;
+	}
+
 	public function import() {
 		$path 		= 'documents/users/';
 		$json 		= [];
@@ -55,10 +61,37 @@ class Upload extends CI_Controller {
 				$reader 	= new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
 			}
 			$spreadsheet 	= $reader->load($file_name);
+
+
+			// 
+
+
+			// $value 	= $spreadsheet->getActiveSheet()->getCell('O2')->ca();
+			// $date = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToTimestamp($value);
+
+
+			
+			// echo json_encode(strtotime('Y-m-d',$value));
+			// echo $value;
+			// exit();
+			// echo "<pre>";
+			// print_r($sheet_data);
+			// echo "</pre>";
+			// $sheet_data = $spreadsheet->getActiveSheet();
+
+			// print_r($sheet_data);
+			// exit();
+
+
+
+
 			$sheet_data 	= $spreadsheet->getActiveSheet()->toArray();
-			$list 			= [];
+
+			// $list 			= [];
 			foreach($sheet_data as $key => $val) {
+
 				if($key != null && $val[0] != null) {
+					// $list[] = $val;
                     $list[] = array(
                         'projectCode' => $val[1],
                         'projectCertificateNo' => $val[2],
@@ -70,23 +103,27 @@ class Upload extends CI_Controller {
                         'projectFaculty' => $val[8],
                         'projectMobile' => $val[9],
                         'projectEmail' => $val[10],
-                        'projectSecurityLab' => $val[11],
-                        'projectType' => $val[12],
+                        'projectType' => $val[11],
+                        'projectSecurityLabLevel' => $val[12],
                         'projectRoom' => $val[13],
-                        'projectRequestDate' => $val[14],
-                        'projectApprovalDate' => $val[15],
-                        'projectProcessDate' => $val[16],
-                        'projectCertificateExpireDate' => $val[17],
-                        'projectProcessResearcherDate' => $val[18],
-                        'projectExtendDate' => $val[19],
-                        'projectExtendDateEnd' => $val[20],
-                        'projectDateClose' => $val[21],
-                        'projectStatus' => $val[22],
+						// Date Default format dd/mm/yyyy
+                        'projectRequestDate' => ($val[14] != '' ? $this->date_customFormat($val[14]) : ''),
+                        'projectPresentCeoDate' => ($val[15] != '' ? $this->date_customFormat($val[15]) : ''),
+                        'projectPassToUniversityDate' => ($val[16] != '' ? $this->date_customFormat($val[16]) : ''),
+                        'projectApprovalDate' => ($val[17] != '' ? $this->date_customFormat($val[17]) : ''),
+                        'projectProcessDate' =>($val[18] != '' ? $this->date_customFormat($val[18]) : ''),
+                        'projectCertificateExpireDate' => ($val[19] != '' ? $this->date_customFormat($val[19]) : ''),
+                        'projectDateClose' => ($val[20] != '' ? $this->date_customFormat($val[20]) : ''),
+                        'projectComment' => $val[21]
                     );
 				}
 			}
-			if(file_exists($file_name))
+			if(file_exists($file_name)){
 				unlink($file_name);
+			}else{
+				echo "cannot remove file.";
+				exit();
+			}
 			if(count($list) > 0) {
 				$this->table = 'projects';
 				$result = $this->upload_model->add_batch($list);
@@ -106,6 +143,7 @@ class Upload extends CI_Controller {
 			}
 		}
 		echo json_encode($json);
+		// echo json_encode($json);
 	}
 
 	public function upload_config($path) {

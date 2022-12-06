@@ -20,4 +20,10 @@ class Report extends CI_Controller {
 		$this->load->view('admin/report');
         $this->load->view('Layouts/footer');
 	}
+    public function edit($projectId)
+    {
+        echo "<script>console.log('edit project')</script>";
+        print_r($this->session);
+        echo $projectId;
+    }
 }

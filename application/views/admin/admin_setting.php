@@ -29,7 +29,9 @@
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="projects" role="tabpanel"
                                     aria-labelledby="projects-tab">
-                                    <form id="projects-upload" autocomplete="off">
+
+
+                                    <form id="projects-upload" autocomplete="off" class="mt-2">
                                         <div class="form-row mt-3">
                                             <div class="col-md-12 input-group">
                                                 <div class="custom-file">

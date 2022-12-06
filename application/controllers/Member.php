@@ -15,6 +15,9 @@ class Member extends CI_Controller {
 	}
 	public function check()
 	{
+		// created session for test
+		$_SESSION['userName'] = "ADMIN";
+		$_SESSION['userRole'] = '1';
 		if(isset($_SESSION['userName'])){
 			if($_SESSION['userRole'] == '1'){
 				redirect('admin');
@@ -45,7 +48,7 @@ class Member extends CI_Controller {
 							'userRole' => '3'
 						);
 						$this->session->set_userdata($sess);
-						print_r($_SESSION);
+						redirect('member');
 					}else{
 						$this->load->library('session');
 						$this->session->set_flashdata('err_message', 'Username or Password is invalid');
