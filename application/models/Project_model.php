@@ -20,7 +20,7 @@ class Project_model extends CI_Model{
         }
     }
 
-    public function edit($projectId){
+    public function getProject($projectId){
         $this->db->select('*');
         $this->db->where('projectId',$projectId);
         $query = $this->db->get('projects',1);

@@ -22,9 +22,9 @@ class Project extends CI_Controller {
 		$this->load->view('admin/report');
         $this->load->view('Layouts/footer');
 	}
-    public function edit($projectId)
-    {
-        $data['results'] = $this->Project_model->edit($projectId);
+
+    public function show($projectId){
+        $data['results'] = $this->Project_model->getProject($projectId);
         if($data['results']){
             $data['message'] = 'success';
             $data['status'] = '1';
@@ -37,7 +37,26 @@ class Project extends CI_Controller {
         $this->load->view('Layouts/header');
         $this->load->view('Layouts/navbar');
         $this->load->view('Layouts/sidebar');
-		$this->load->view('admin/project/edit_view',$data);
+		$this->load->view('admin/project/show',$data);
+        $this->load->view('Layouts/footer');
+    }
+
+    public function edit($projectId)
+    {
+        $data['results'] = $this->Project_model->getProject($projectId);
+        if($data['results']){
+            $data['message'] = 'success';
+            $data['status'] = '1';
+        }else{
+            $data['message'] = 'Project Not Found.';
+            $data['status'] = '0';
+        }
+        $this->load->view('admin/admin_css');
+        $this->load->view('admin/admin_js');
+        $this->load->view('Layouts/header');
+        $this->load->view('Layouts/navbar');
+        $this->load->view('Layouts/sidebar');
+		$this->load->view('admin/project/edit',$data);
         $this->load->view('Layouts/footer');
     }
 

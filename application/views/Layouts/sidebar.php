@@ -14,9 +14,10 @@
                 <img src="<?= base_url('img/user2-160x160.jpg');?>" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">USER : BET0047
+                <a href="#" class="d-block"><?= $this->session->userdata['userName'];?>
                     <br>
-                    <p style="font-size:0.75rem !important;font-style: italic;">STATUS : ADMIN</p>
+                    <p style="font-size:0.75rem !important;font-style: italic;">Role :
+                        <?= ($this->session->userdata['userRole'] == '1') ? "Admin" : "Researcher";?></p>
                 </a>
             </div>
         </div>

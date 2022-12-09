@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;400&display=swap');
+
+body {
+
+    font-family: 'Kanit', sans-serif !important;
+}
+
 .nameProjectEN {
     font-size: 0.85rem !important;
 }

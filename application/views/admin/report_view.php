@@ -49,8 +49,8 @@
                                         <td>
                                             <div class="form-row">
                                                 <div class="col-md p-0 mt-1">
-                                                    <a class="btn btn-sm btn-outline-info"
-                                                        href="<?= site_url('edit/'.$rs->projectId);?>"><i
+                                                    <a class="btn btn-sm btn-outline-primary"
+                                                        href="<?= site_url('show/'.$rs->projectId);?>"><i
                                                             class="nav-icon fas fa-eye"></i></a>
                                                 </div>
                                                 <div class="col-md p-0 mt-1">
@@ -58,6 +58,12 @@
                                                         href="<?= site_url('files/'.$rs->projectId);?>"><i
                                                             class="nav-icon fas fa-folder-open"></i></a>
                                                 </div>
+                                                <div class="col-md p-0 mt-1">
+                                                    <a class="btn btn-sm btn-outline-info"
+                                                        href="<?= site_url('edit/'.$rs->projectId);?>"><i
+                                                            class="nav-icon fas fa-edit"></i></a>
+                                                </div>
+
                                             </div>
                                         </td>
                                     </tr>

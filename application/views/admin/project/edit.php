@@ -9,11 +9,20 @@
                         <? print_r($this->session->userdata); ?>
                     </div>
                     <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h4>แก้ไขข้อมูล</h4>
+                        <div class="card-header flex">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="d-flex justify-content-start">
+                                        <h5>แก้ไขข้อมูล</h5>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="d-flex justify-content-end"> <a href="<?= site_url('report')?>"
+                                            class="justify-content-center">back
+                                            <i class="fas fa-arrow-right"></i>
+                                        </a></div>
+                                </div>
                             </div>
-
                         </div>
                         <div class="card-body p-5">
                             <?
