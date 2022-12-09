@@ -56,8 +56,10 @@ $route['translate_uri_dashes'] = FALSE;
 $route['logout'] = 'Member/logout';
 
 // admin
+
+$route['admin/dashboard'] = 'Admin';
 $route['setting'] = 'Admin/setting';
 $route['report'] = 'Admin/report';
-// $route['Admin/edit/(:any)'] = 'Report/edit';
-
-$route['excel/import']      = 'Upload/import';
+$route['excel/import']  = 'Upload/import';
+$route['edit/(:any)'] = 'project/edit/$1';
+// $route['edit/(:any)'] = ''

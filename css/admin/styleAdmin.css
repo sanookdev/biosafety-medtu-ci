@@ -6,3 +6,7 @@
 .sidebar-light-primary .nav-sidebar>.nav-item>.nav-link.active {
     background-color: #E77000 !important;
 }
+
+.form-row {
+    margin-bottom: 10px !important;
+}

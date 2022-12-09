@@ -4,6 +4,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-5">
+                    <? print_r($this->session->userdata);?>
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">
@@ -47,14 +48,16 @@
                                         <td><?= $rs->projectApprovalDate;?></td>
                                         <td>
                                             <div class="form-row">
-                                                <a class="btn btn-sm btn-outline-info"
-                                                    href="<?php echo base_url('report/edit/'.$rs->projectId);?>">edit</a>
-                                                <!-- <button class="btn btn-sm btn-outline-info"
-                                                    onclick="<?= base_url('report/edit');?>report/edit">
-                                                    <i class="fas fa-edit"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-outline-secondary"><i
-                                                        class="fas fa-folder"></i></button> -->
+                                                <div class="col-md p-0 mt-1">
+                                                    <a class="btn btn-sm btn-outline-info"
+                                                        href="<?= site_url('edit/'.$rs->projectId);?>"><i
+                                                            class="nav-icon fas fa-eye"></i></a>
+                                                </div>
+                                                <div class="col-md p-0 mt-1">
+                                                    <a class="btn btn-sm btn-outline-secondary"
+                                                        href="<?= site_url('files/'.$rs->projectId);?>"><i
+                                                            class="nav-icon fas fa-folder-open"></i></a>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>

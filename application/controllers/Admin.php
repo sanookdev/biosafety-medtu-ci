@@ -14,12 +14,17 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
+        $data['results'] = array(
+            '0' => $this->Admin_model->getCountProjectStatus(0),
+            '1' => $this->Admin_model->getCountProjectStatus(1),
+            '2' => $this->Admin_model->getCountProjectStatus(2)
+        );
         $this->load->view('admin/admin_css');
         $this->load->view('admin/admin_js');
         $this->load->view('Layouts/header');
         $this->load->view('Layouts/navbar');
         $this->load->view('Layouts/sidebar');
-		$this->load->view('admin/admin_view');
+		$this->load->view('admin/dashboard',$data);
         $this->load->view('Layouts/footer');
 	}
 
@@ -43,5 +48,9 @@ class Admin extends CI_Controller {
         $this->load->view('Layouts/sidebar');
 		$this->load->view('admin/admin_setting');
         $this->load->view('Layouts/footer');
+    }
+
+    public function waiting($res){
+        echo $res;
     }
 }
