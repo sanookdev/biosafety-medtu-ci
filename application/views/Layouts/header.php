@@ -1,4 +1,4 @@
-<body>
+<body class="hold-transition sidebar-mini">
     <div class="wrapper">
         <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">

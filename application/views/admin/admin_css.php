@@ -1,7 +1,7 @@
-<?= link_tag('css/admin/styleAdmin.css');?>
-<?= link_tag('css/admin/adminlte.min.css');?>
 <?= link_tag('css/summernote/summernote-bs4.min.css');?>
 <?= link_tag('css/fontawesome-free/css/all.min.css');?>
+<?= link_tag('css/admin/adminlte.min.css');?>
+<?= link_tag('css/admin/styleAdmin.css');?>
 <?= link_tag('css/gsi-step-indicator.css');?>
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">

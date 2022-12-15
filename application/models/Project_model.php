@@ -29,6 +29,14 @@ class Project_model extends CI_Model{
         }
     }
 
+    public function create($data){
+        if($this->db->insert('projects',$data)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
     public function update($data){
         $this->db->where('projectId',$data['projectId']);
         if($this->db->update('projects',$data)){
@@ -36,8 +44,15 @@ class Project_model extends CI_Model{
         }else{
             return 0;
         }
-        // return $data;
-        
+    }
+
+    public function delete($projectId){
+        $this->db->where('projectId',$projectId);
+        if($this->db->delete('projects')){
+            return 1;
+        }else{
+            return 0;
+        }
     }
 }
 ?>

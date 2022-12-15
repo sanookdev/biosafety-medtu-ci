@@ -7,6 +7,6 @@
           <b>Dashboard by AdminLTE Version</b> 3.1.0
       </div>
   </footer>
-
+  <!-- /.control-sidebar -->
   </div>
   </body>

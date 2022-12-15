@@ -10,8 +10,7 @@
             <div class="row">
                 <div class="col-md-12 mt-5">
                     <div class="form-row">
-                        session =
-                        <? print_r($this->session->userdata); ?>
+                        <? echo "<script>console.log(".json_encode($this->session->userdata).")</script>" ;?>
                     </div>
                     <div class="card">
                         <div class="card-header flex">
@@ -195,10 +194,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <a href="<?= base_url('report')?>" class="btn btn-sm btn-info float-left">ย้อนกลับ</a>
-                            </div>
-
+                            <a href="<?= site_url('edit/'.$results->projectId) ;?>"
+                                class="btn btn-sm btn-warning ">แก้ไข</a>
 
                             <?}else{?>
                             <p>

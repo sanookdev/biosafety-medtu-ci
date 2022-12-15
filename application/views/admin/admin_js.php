@@ -1,7 +1,4 @@
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-<!-- axios -->
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
 <!-- js data table  -->
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>

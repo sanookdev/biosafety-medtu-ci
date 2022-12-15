@@ -3,18 +3,26 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 mt-5">
-                    <? print_r($this->session->userdata);?>
+                <div class="col-md-12 mt-3">
+                    <? echo "<script>console.log(".json_encode($this->session->userdata).")</script>" ;?>
                     <div class="card">
                         <div class="card-header">
                             <div class="card-title">
                                 <h4>โปรเจ็คทั้งหมด</h4>
                             </div>
-                            <button class="btn btn-sm btn-success float-right">
+                            <a href="<?= site_url('project/add')?>" class="btn btn-sm btn-success float-right">
                                 <i class="nav-icon fas fa-plus"></i> เพิ่มโปรเจค
-                            </button>
+                            </a>
                         </div>
                         <div class="card-body">
+                            <?
+                            if(!empty($this->session->flashdata('err_status'))){
+                                if($this->session->flashdata('err_status') == '1'){
+                                    echo "<p class = 'alert alert-success'>".($this->session->flashdata('err_message')). "</p>";
+                                }
+                            }
+                            
+                        ?>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
@@ -64,6 +72,12 @@
                                                             class="nav-icon fas fa-edit"></i></a>
                                                 </div>
 
+                                                <div class="col-md p-0 mt-1">
+                                                    <a class="btn btn-sm btn-outline-danger"
+                                                        href="<?= site_url('project/delete/'.$rs->projectId);?>"><i
+                                                            class="nav-icon fas fa-trash"></i></a>
+                                                </div>
+
                                             </div>
                                         </td>
                                     </tr>
@@ -83,7 +97,7 @@
 </div>
 
 
-<script type="text/javascript">
+<script>
 var rootUrl = location.hostname;
 $(document).ready(function() {
     $('.table').DataTable({
@@ -192,81 +206,6 @@ $(document).ready(function() {
         }
     }
 
-    // show modal edit form of project
-    projectEdits = async (projectId) => {
-        pId = projectId;
-        let details = {};
-        await axios.post('./api/informations.php', {
-            action: 'projectEdits',
-            projectId: projectId
-        }).then((res) => {
-            details = res.data.data[0]
-            if (details == '') {
-                console.log('data empty')
-            } else {
-                $.each(details, function(keys, values) {
-                    $('#' + keys).val(values);
-                });
-            }
-        })
-        $('#projectEdits').modal('show');
-    }
 
-
-    // update data of project 
-    projectUpdate = async () => {
-        let datas = {};
-        $.each($("#projectEditForm").serializeArray(), function(i, field) {
-            datas[field.name] = field.value;
-        });
-        await axios.post('./api/informations.php', {
-            action: 'updateProjects',
-            data: datas,
-            projectId: pId
-        }).then(async (res) => {
-            if (res.data.status) {
-                await alertify.success('Updated')
-                await reportAll();
-                await $('#projectEdits').modal('hide');
-            }
-        })
-    }
-
-    // clear link file a tag every reclick for show list documents of project
-    clearDataFile = async () => {
-        console.log('clear data ready now !');
-        $('#formDocuments a').each(function(index) {
-            var forAttr = $(this);
-            forAttr[0].remove()
-        });
-    }
-
-    // show list documents of project
-    projectDocuments = async (projectId) => {
-        pId = projectId;
-        console.log('project documents ready. id = ' + projectId);
-        await clearDataFile();
-        await axios.post('./api/informations.php', {
-            action: 'projectDocuments',
-            projectId: projectId
-        }).then((res) => {
-            console.log('project document list ready now !');
-            if (res.data.message == 'success') {
-                let details = res.data.data;
-                console.log(res)
-                details.forEach(element => {
-                    let name = element.documentNameFile.split('.');
-                    let file = element.documentNameFile;
-                    let targetUrl = "../uploads/projects/" + pId + "/" + file;
-                    let el = $('label[for=' + name[0] + ']')[0].textContent.trim();
-                    let linkFileopen = ' <a href = "' + targetUrl +
-                        '" target = "_blank">' + file +
-                        '</a>';
-                    $('label[for="' + name[0] + '"]').after(linkFileopen);
-                });
-            }
-        })
-        $('#projectDocuments').modal('show');
-    }
 });
 </script>
