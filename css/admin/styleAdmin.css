@@ -17,3 +17,30 @@ body {
 .form-row {
     margin-bottom: 10px !important;
 }
+
+@media (min-width: 576px) {
+    .content-wrapper {
+        min-height: 576px !important;
+    }
+}
+
+
+@media (min-width: 768px) {
+    .content-wrapper {
+        min-height: 768px !important;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .content-wrapper {
+        min-height: 992px !important;
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .content-wrapper {
+        min-height: 1200px !important;
+    }
+}

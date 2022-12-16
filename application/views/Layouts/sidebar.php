@@ -26,7 +26,8 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
-                    <a href="<?= site_url('admin');?>" class="nav-link">
+                    <a href="<?= ($this->session->userdata['userRole'] == '1') ? site_url('admin') : site_url('user');?>"
+                        class="nav-link">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Dashboard
@@ -43,8 +44,8 @@
                     </a>
                     <ul class="nav nav-treeview ">
                         <li class="nav-item">
-                            <a href="<?= site_url('report');?>" class="nav-link"
-                                onclick="activityClassNavLink(this,'report')">
+                            <a href="<?= ($this->session->userdata['userRole'] == '1') ? site_url('report') : site_url('user/report');?>"
+                                class="nav-link" onclick="activityClassNavLink(this,'report')">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>โครงการทั้งหมด</p>
                             </a>
@@ -52,6 +53,7 @@
                     </ul>
                 </li>
                 <!-- เมนูตั้งค่า -->
+                <? if($this->session->userdata['userRole'] == '1'){?>
                 <li class="nav-item " style="border-bottom:1px solid #4f5962;">
                     <!-- <a href="#settings" class="nav-link " onclick="activityClassNavLink(this,'settings')"> -->
                     <a href="<?= site_url('setting');?>" class="nav-link ">
@@ -61,6 +63,7 @@
                         </p>
                     </a>
                 </li>
+                <?}?>
                 <!-- เมนูตั้งค่า (end) -->
 
             </ul>

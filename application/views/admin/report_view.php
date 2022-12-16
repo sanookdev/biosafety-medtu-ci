@@ -73,8 +73,8 @@
                                                 </div>
 
                                                 <div class="col-md p-0 mt-1">
-                                                    <a class="btn btn-sm btn-outline-danger"
-                                                        href="<?= site_url('project/delete/'.$rs->projectId);?>"><i
+                                                    <a class="btn btn-sm btn-outline-danger" href="javascript:void(0);"
+                                                        onclick="deleteProject(<?= $rs->projectId ; ?>)"><i
                                                             class="nav-icon fas fa-trash"></i></a>
                                                 </div>
 
@@ -152,6 +152,19 @@ $(document).ready(function() {
     var table = '';
 
 
+    deleteProject = (projectId) => {
+        let url = "<?= site_url('project/delete/')?>";
+        alertify.confirm("Do you want to delete this?",
+            function() {
+                window.location = url + projectId;
+            },
+            function() {
+                alertify.error('Cancel');
+            }).set({
+            title: '!! Are you sure ?'
+        });
+    }
+
     // upload the document of project by name type
     uploadDocument = async (element) => {
         let data = new FormData();
@@ -205,7 +218,5 @@ $(document).ready(function() {
             });
         }
     }
-
-
 });
 </script>

@@ -114,7 +114,8 @@ class Upload extends CI_Controller {
                         'projectProcessDate' =>($val[18] != '' ? $this->date_customFormat($val[18]) : ''),
                         'projectCertificateExpireDate' => ($val[19] != '' ? $this->date_customFormat($val[19]) : ''),
                         'projectDateClose' => ($val[20] != '' ? $this->date_customFormat($val[20]) : ''),
-                        'projectComment' => $val[21]
+                        'projectComment' => $val[21],
+						'medcode' => $val[22]
                     );
 				}
 			}

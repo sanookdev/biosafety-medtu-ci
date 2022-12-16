@@ -5,8 +5,9 @@ class Project_model extends CI_Model{
         parent::__construct();
     }
 
-    public function fetch_projectAll(){
+    public function fetch_projectByUser(){
         $this->db->select('*');
+        $this->db->where('medcode',$this->session->userdata['userName']);
         $query = $this->db->get('projects');
         return $query->result();
     }

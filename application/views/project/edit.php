@@ -3,7 +3,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12 mt-5">
+                <div class="col-md-12 mt-2">
                     <div class="form-row">
                         <? echo "<script>console.log(".json_encode($this->session->userdata).")</script>" ;?>
                     </div>
@@ -12,7 +12,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="d-flex justify-content-start">
-                                        <h5>เพิ่มโปรเจค</h5>
+                                        <h5>แก้ไขข้อมูล</h5>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -33,12 +33,16 @@
                             
                         ?>
 
-                            <form action="<?= site_url('project/create');?>" method="post">
+                            <?if($status == 1){?>
+
+                            <form action="<?= site_url('project/update');?>" method="post">
                                 <div class="form-row">
+                                    <input type="text" name="projectId" value="<?= $results->projectId?>" hidden>
                                     <div class="col-md-4">
                                         <label for="projectCode">รหัสโครงการ</label>
                                         <input type="text" class="form-control form-control-sm" name="projectCode"
-                                            aria-describedby="projectHelp" required>
+                                            value="<?= $results->projectCode;?>" aria-describedby="projectHelp" readonly
+                                            required>
                                         <!-- <small id="projectHelp" class="form-text text-muted">We'll never share your
                                             email
                                             with
@@ -47,7 +51,20 @@
                                     <div class="col-md-4">
                                         <label for="projectCertificateNo">เลขที่หนังสือรับรอง</label>
                                         <input type="text" class="form-control form-control-sm"
-                                            name="projectCertificateNo" required>
+                                            name="projectCertificateNo" value="<?= $results->projectCertificateNo;?>"
+                                            readonly required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="projectStatus">สถานะโครงการ</label>
+                                        <select name="projectStatus" class="form-control form-control-sm"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'disabled' : '' ;?>>
+                                            <option value="0" <?= ($results->projectStatus == 0) ? "selected" : "" ?>>
+                                                รออนุมัติ</option>
+                                            <option value="1" <?= ($results->projectStatus == 1) ? "selected" : "" ?>>
+                                                อนุมัติ</option>
+                                            <option value="2" <?= ($results->projectStatus == 2) ? "selected" : "" ?>>
+                                                ปิดโครงการ</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -55,14 +72,14 @@
                                     <div class="col-md-12">
                                         <label for="projectNameTH">ชื่อโครงการภาษาไทย</label>
                                         <input type="text" class="form-control form-control-sm" name="projectNameTH"
-                                            required>
+                                            value="<?= $results->projectNameTH;?>" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-12">
                                         <label for="projectNameEN">ชื่อโครงการภาษาอังกฤษ</label>
                                         <input type="text" class="form-control form-control-sm" name="projectNameEN"
-                                            required>
+                                            value="<?= $results->projectNameEN;?>" required>
                                     </div>
                                 </div>
 
@@ -70,24 +87,24 @@
                                     <div class="col-md-3">
                                         <label for="projectPosition">คำนำหน้า</label>
                                         <input type="text" class="form-control form-control-sm" name="projectPosition"
-                                            required>
+                                            value="<?= $results->projectPosition ;?>" required>
                                     </div>
                                     <div class="col-md-9">
                                         <label for="projectLeader">หัวหน้าโครงการ</label>
                                         <input type="text" class="form-control form-control-sm" name="projectLeader"
-                                            required>
+                                            value="<?= $results->projectLeader;?>" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <label for="projectDepartment">ภาควิชา/แผนก</label>
                                         <input type="text" class="form-control form-control-sm" name="projectDepartment"
-                                            required>
+                                            value="<?= $results->projectDepartment;?>" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="projectFaculty">คณะ</label>
                                         <input type="text" class="form-control form-control-sm" name="projectFaculty"
-                                            required>
+                                            value="<?= $results->projectFaculty;?>" required>
                                     </div>
                                 </div>
 
@@ -95,28 +112,35 @@
                                     <div class="col-md-6">
                                         <label for="projectMobile">เบอร์โทรศัพท์</label>
                                         <input type="text" class="form-control form-control-sm" name="projectMobile"
-                                            required>
+                                            value="<?= $results->projectMobile;?>" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="projectEmail">อีเมลล์</label>
                                         <input type="text" class="form-control form-control-sm" name="projectEmail"
-                                            required>
+                                            value="<?= $results->projectEmail;?>" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-4">
                                         <label for="projectType">ชนิดประเภทโครงการ</label>
                                         <input type="text" class="form-control form-control-sm" name="projectType"
+                                            value="<?= $results->projectType;?>"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
                                             required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="projectSecurityLabLevel">ระดับความปลอดภัยของห้อง Lab</label>
                                         <input type="text" class="form-control form-control-sm"
-                                            name="projectSecurityLabLevel" required>
+                                            name="projectSecurityLabLevel"
+                                            value="<?= $results->projectSecurityLabLevel;?>"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
+                                            required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="projectRoom">ห้องที่ใช้งาน</label>
                                         <input type="text" class="form-control form-control-sm" name="projectRoom"
+                                            value="<?= $results->projectRoom;?>"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
                                             required>
                                     </div>
                                 </div>
@@ -124,12 +148,16 @@
                                     <div class="col-md-6">
                                         <label for="projectRequestDate">วันที่ยื่นขอ</label>
                                         <input type="date" class="form-control form-control-sm"
-                                            name="projectRequestDate" required>
+                                            name="projectRequestDate" value="<?= $results->projectRequestDate;?>"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
+                                            required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="projectPresentCeoDate">วันที่เสนอผู้บริหาร</label>
                                         <input type="date" class="form-control form-control-sm"
-                                            name="projectPresentCeoDate" required>
+                                            name="projectPresentCeoDate" value="<?= $results->projectPresentCeoDate;?>"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
+                                            required>
                                     </div>
                                 </div>
 
@@ -138,24 +166,32 @@
                                         <label
                                             for="projectPassToUniversityDate">วันที่ส่งเอกสารลงนามเข้ามหาวิทยาลัย</label>
                                         <input type="date" class="form-control form-control-sm"
-                                            name="projectPassToUniversityDate" required>
+                                            name="projectPassToUniversityDate"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
+                                            value="<?= $results->projectPassToUniversityDate;?>" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="projectApprovalDate">วันที่อนุมัติ</label>
                                         <input type="date" class="form-control form-control-sm"
-                                            name="projectApprovalDate" required>
+                                            name="projectApprovalDate" value="<?= $results->projectApprovalDate;?>"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
+                                            required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <label for="projectProcessDate">วันที่กำหนดรายงานความก้าวหน้า</label>
                                         <input type="date" class="form-control form-control-sm"
-                                            name="projectProcessDate" required>
+                                            name="projectProcessDate" value="<?= $results->projectProcessDate;?>"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
+                                            required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="projectCertificateExpireDate">วันที่สิ้นสุดการรับรองโครงการ</label>
                                         <input type="date" class="form-control form-control-sm"
-                                            name="projectCertificateExpireDate" required>
+                                            name="projectCertificateExpireDate"
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
+                                            value="<?= $results->projectCertificateExpireDate;?>" required>
                                     </div>
                                 </div>
 
@@ -163,7 +199,8 @@
                                     <div class="col-md-6">
                                         <label for="projectDateClose">วันที่ปิดโครงการ</label>
                                         <input type="date" class="form-control form-control-sm" name="projectDateClose"
-                                            required>
+                                            <?= ($this->session->userdata['userRole'] != '1') ? 'readonly' : '' ;?>
+                                            value="<?= $results->projectDateClose;?>" required>
                                     </div>
                                 </div>
 
@@ -176,20 +213,32 @@
                                                     'rows' => 5,
                                                     'style' => 'width:100%',
                                                     'class' => 'form-control form-control-sm',
-                                                    'value' =>  ''
+                                                    'value' => $results->projectComment
                                                     );
+
+                                                    if($this->session->userdata['userRole'] != '1'){
+                                                        $data_textarea['readonly'] = 'readonly';
+                                                    }
                                                     echo form_textarea($data_textarea);
                                             ?>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <a href="<?= base_url('report')?>"
-                                        class="btn btn-sm btn-info float-left">ย้อนกลับ</a>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="บันทึก" class="btn btn-sm btn-success float-right">
+                                    <input type="submit" value="อัพเดต" class="btn btn-sm btn-success float-right">
                                 </div>
                             </form>
+
+                            <? 
+                                // echo "<pre>";
+                                // print_r($results);
+                                // echo "</pre>";
+                                ?>
+
+                            <?}else{?>
+                            <p class="alert alert-danger">
+                                <?= $message;?>
+                            </p>
+                            <?}?>
                         </div>
                     </div>
                     <!-- /.card -->

@@ -8,24 +8,26 @@ class Member extends CI_Controller {
 	}
 	public function index()
 	{
+		if(isset($this->session->userdata['userName'])){
+			if($this->session->userdata['userRole'] == '1'){
+				redirect('admin');
+			}else{
+				redirect('user');
+			}
+		}
+	}
+
+	public function signin(){
 		$this->load->view('myCss');
 		$this->load->view('bgAnimation');
 		$this->load->view('login_view');
 		$this->load->view('myJs');
 	}
+	
 	public function check()
 	{
-		// created session for test
-		$_SESSION['userName'] = "ADMIN";
-		$_SESSION['userRole'] = '1';
-		if(isset($_SESSION['userName'])){
-			if($_SESSION['userRole'] == '1'){
-				redirect('admin');
-			}else{
-				redirect('user');
-			}
-		}else{
 			if($this->input->post('username') == '' || $this->input->post('password') == ''){
+				// echo "1";
 				$this->load->view('member');
 			}else{
 				$username = strtoupper($this->input->post('username'));
@@ -37,7 +39,7 @@ class Member extends CI_Controller {
 						'userRole' => $result->userRole
 					);
 					$this->session->set_userdata($sess);
-					($this->session->userdata('userName') == 'ADMIN') ? redirect('admin') : redirect('user');
+					($this->session->userdata('userRole') == '1') ? redirect('admin') : redirect('user');
 				}else{
 					$jsonurl = 'http://203.131.209.236/_authen/_authen.php?user_login=' . $username;
 					$json = file_get_contents($jsonurl);
@@ -57,7 +59,7 @@ class Member extends CI_Controller {
 					}
 				}
 			}
-		}
+	
 	}
 	public function signup(){
 		$this->load->view('myCss');
@@ -75,6 +77,7 @@ class Member extends CI_Controller {
 
 	public function logout(){
 		$this->session->sess_destroy();
-		redirect('member');
+		// print_r($this->session);
+		redirect('signin');
 	}
 }

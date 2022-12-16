@@ -5,8 +5,8 @@ class Project extends CI_Controller {
 
     public function __construct(){
         parent::__construct();
-        if($this->session->userdata('userRole') != '1'){
-            redirect('user','refresh');
+        if($this->session->userdata('userRole') == false){
+            redirect('member','refresh');
         }else{
             $this->load->model('Project_model');
         }
@@ -37,7 +37,7 @@ class Project extends CI_Controller {
         $this->load->view('Layouts/header');
         $this->load->view('Layouts/navbar');
         $this->load->view('Layouts/sidebar');
-		$this->load->view('admin/project/show',$data);
+		$this->load->view('project/show',$data);
         $this->load->view('Layouts/footer');
     }
 
@@ -48,7 +48,7 @@ class Project extends CI_Controller {
         $this->load->view('Layouts/header');
         $this->load->view('Layouts/navbar');
         $this->load->view('Layouts/sidebar');
-		$this->load->view('admin/project/add');
+		$this->load->view('project/add');
         $this->load->view('Layouts/footer');
     }
 
@@ -78,7 +78,7 @@ class Project extends CI_Controller {
         $this->load->view('Layouts/header');
         $this->load->view('Layouts/navbar');
         $this->load->view('Layouts/sidebar');
-		$this->load->view('admin/project/edit',$data);
+		$this->load->view('project/edit',$data);
         $this->load->view('Layouts/footer');
     }
 
