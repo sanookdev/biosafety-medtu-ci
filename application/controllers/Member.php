@@ -14,6 +14,8 @@ class Member extends CI_Controller {
 			}else{
 				redirect('user');
 			}
+		}else{
+			$this->signin();
 		}
 	}
 
@@ -78,6 +80,6 @@ class Member extends CI_Controller {
 	public function logout(){
 		$this->session->sess_destroy();
 		// print_r($this->session);
-		redirect('signin');
+		redirect('login');
 	}
 }

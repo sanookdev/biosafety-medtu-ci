@@ -25,6 +25,8 @@ class Project extends CI_Controller {
 
     public function show($projectId){
         $data['results'] = $this->Project_model->getProject($projectId);
+        $data['documents'] = $this->Project_model->getDocuments($projectId);
+        $data['documentType'] = $this->Project_model->getDocumentType();
         if($data['results']){
             $data['message'] = 'success';
             $data['status'] = '1';
@@ -66,6 +68,8 @@ class Project extends CI_Controller {
     public function edit($projectId)
     {
         $data['results'] = $this->Project_model->getProject($projectId);
+        $data['documents'] = $this->Project_model->getDocuments($projectId);
+        $data['documentType'] = $this->Project_model->getDocumentType();
         if($data['results']){
             $data['message'] = 'success';
             $data['status'] = '1';
@@ -82,13 +86,33 @@ class Project extends CI_Controller {
         $this->load->view('Layouts/footer');
     }
 
+    public function documents($projectId){
+        $data['documents'] = $this->Project_model->getDocuments($projectId);
+        $data['documentType'] = $this->Project_model->getDocumentType();
+        $data['projectId'] = $projectId;
+        if($data['documents']){
+            $data['message'] = 'success';
+            $data['status'] = '1';
+        }else{
+            $data['message'] = 'Project Not Found.';
+            $data['status'] = '0';
+        }
+        $this->load->view('admin/admin_css');
+        $this->load->view('admin/admin_js');
+        $this->load->view('Layouts/header');
+        $this->load->view('Layouts/navbar');
+        $this->load->view('Layouts/sidebar');
+		$this->load->view('project/documents',$data);
+        $this->load->view('Layouts/footer');
+    }
+    
     public function update()
     {
         if($this->Project_model->update($this->input->post())){
             $this->session->set_flashdata('err_message', 'Updated');
             $this->session->set_flashdata('err_status', 1);
         }
-        redirect('project/edit/'.$this->input->post('projectId'));
+        redirect('project/show/'.$this->input->post('projectId'));
     }
 
     public function delete($projectId){

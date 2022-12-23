@@ -6,6 +6,7 @@
                 <div class="col-md-12 mt-3">
                     <? echo "<script>console.log(".json_encode($this->session->userdata).")</script>" ;?>
                     <div class="card">
+
                         <div class="card-header">
                             <div class="card-title">
                                 <h4>โปรเจ็คทั้งหมด</h4>
@@ -66,16 +67,6 @@
                                                         href="<?= site_url('files/'.$rs->projectId);?>"><i
                                                             class="nav-icon fas fa-folder-open"></i></a>
                                                 </div>
-                                                <!-- <div class="col-md p-0 mt-1">
-                                                    <a class="btn btn-sm btn-outline-info"
-                                                        href="<?= site_url('edit/'.$rs->projectId);?>"><i
-                                                            class="nav-icon fas fa-edit"></i></a>
-                                                </div>
-                                                <div class="col-md p-0 mt-1">
-                                                    <a class="btn btn-sm btn-outline-danger" href="javascript:void(0);"
-                                                        onclick="deleteProject(<?= $rs->projectId ; ?>)"><i
-                                                            class="nav-icon fas fa-trash"></i></a>
-                                                </div> -->
                                             </div>
                                         </td>
                                     </tr>

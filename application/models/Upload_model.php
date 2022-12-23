@@ -8,6 +8,37 @@ class Upload_model extends CI_Model {
 		// $this->table = 'user_info';
 	}
 
+	public function save_file($data){
+
+		$checkHasFile = $this->hasFile($data->projects_projectId,$data->documentType);
+		echo $checkHasFile;
+		// if(count($checkHasFile)){
+		// 	if($this->db->update('projectdocuments',$data)){
+		// 		return 1;
+		// 	}else{
+		// 		return 0;
+		// 	}
+		// }
+		// else{
+		// 	if($this->db->insert('projectdocuments',$data)){
+		// 		return 1;
+		// 	}else{
+		// 		return 0;
+		// 	}
+		// }
+	}
+
+	public function hasFile($projectId,$documentType){
+		$this->db->select('*');
+		$where = array(
+			'projects_projectId' => $projectId,
+			'documentType' => $documentType
+		);
+		$this->db->where($where);
+		$query = $this->db->get('projectdocuments');
+		return $query->result();
+	}
+
 	public function add($data) {
 		$this->db->insert($this->table, $data);
 		return $this->db->insert_id();

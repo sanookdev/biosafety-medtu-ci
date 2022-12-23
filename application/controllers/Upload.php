@@ -42,6 +42,51 @@ class Upload extends CI_Controller {
 		return $new;
 	}
 
+
+	// Save file function
+	public function save_file($projectId, $fileType , $type) {
+	
+		// Get the file from the form
+		$file = $_FILES[$type];
+	
+		// print_r($file);
+		// Check if the file was uploaded successfully
+		if ($file['error'] == UPLOAD_ERR_OK) {
+		// Set the destination folder
+		$folder = './uploads/'.$projectId . '/';
+
+		if(!is_dir($folder)){
+			mkdir($folder);
+		}
+	
+		// Set the new file name
+		$file_name = uniqid() . '_' . $file['name'];
+	
+		// Save the file to the folder
+		if (move_uploaded_file($file['tmp_name'], $folder . $file_name)) {
+			$data = array(
+				'documentNameFile' => $file_name,
+				'documentType' => $fileType,
+				'projects_projectId' => $projectId
+			);
+			
+			if($this->upload_model->save_file($data)){
+				$this->session->set_flashdata('err_message', $file['name']. ' saved successfully');
+				$this->session->set_flashdata('err_status', 1);
+			}
+		} else {
+			$this->session->set_flashdata('err_message', 'There was an error saving the file');
+			$this->session->set_flashdata('err_status', 0);
+		}
+		} else {
+			$this->session->set_flashdata('err_message', 'There was an error saving the file');
+			$this->session->set_flashdata('err_status', 0);
+		}
+		redirect('edit/'.$projectId);
+	}
+  
+	  
+
 	public function import() {
 		$path 		= 'documents/users/';
 		$json 		= [];

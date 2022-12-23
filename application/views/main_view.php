@@ -8,7 +8,7 @@ if($this->session->userdata('userRole') != false){
         redirect('user');
     }
 }else{
-    redirect('signin');
+    redirect('login');
 }
 
 ?>

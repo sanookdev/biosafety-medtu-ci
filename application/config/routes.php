@@ -53,7 +53,7 @@ $route['default_controller'] = 'Main';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['signin'] = 'member/signin';
+$route['login'] = 'Member/signin';
 $route['logout'] = 'Member/logout';
 
 // admin
@@ -64,3 +64,4 @@ $route['report'] = 'Admin/report';
 $route['excel/import']  = 'Upload/import';
 $route['edit/(:any)'] = 'project/edit/$1';
 $route['show/(:any)'] = 'project/show/$1';
+$route['documents/(:any)'] = 'project/documents/$1';

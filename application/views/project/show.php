@@ -3,7 +3,11 @@
     color: gray;
 }
 </style>
-
+<?
+    if($this->session->flashdata('err_message')){
+        echo "<script>alertify.success('".$this->session->flashdata('err_message')."')</script>";
+    }
+?>
 
 <div class="content-wrapper">
     <div class="container-fluid">
@@ -176,10 +180,12 @@
                                 </h4>
                                 <hr>
                                 <ul class="gsi-style-12   gsi-vertical">
-                                    <li class="<?= ($results->projectStatus >= 0) ? 'visited' : ''?>"><span
-                                            class="desc ">
-                                            <i class="fas fa-check"></i>&nbsp;รออนุมัติ</span>
+                                    <li class="<?= ($results->projectStatus >= 0) ? 'visited' : ''?>">
+                                        <span class="desc">
+                                            <i class="fas fa-check"></i>รออนุมัติ
+                                        </span>
                                     </li>
+
                                     <li class="<?= ($results->projectStatus > 0) ? 'visited' : ''?>"><span
                                             class="desc ">
                                             <i class="fas fa-check"></i>&nbsp;อนุมัติ</span>
@@ -190,6 +196,7 @@
                                     </li>
                                 </ul>
                             </div>
+
                         </div>
 
                         <a href="<?= site_url('edit/'.$results->projectId) ;?>"

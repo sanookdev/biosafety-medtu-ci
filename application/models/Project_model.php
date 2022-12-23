@@ -30,7 +30,21 @@ class Project_model extends CI_Model{
         }
     }
 
+    public function getDocuments($projectId){
+        $this->db->select('*');
+        $this->db->where('projects_projectId',$projectId);
+        $query = $this->db->get('projectdocuments');
+        return $query->result();
+    }
+
+    public function getDocumentType(){
+        $this->db->select('*');
+        $query = $this->db->get('documenttype');
+        return $query->result();
+    }
+
     public function create($data){
+        $data['medcode'] = strtoupper($data['medcode']);
         if($this->db->insert('projects',$data)){
             return 1;
         }else{

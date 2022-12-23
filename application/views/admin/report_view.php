@@ -63,15 +63,14 @@
                                                 </div>
                                                 <div class="col-md p-0 mt-1">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="<?= site_url('files/'.$rs->projectId);?>"><i
+                                                        href="<?= site_url('documents/'.$rs->projectId);?>"><i
                                                             class="nav-icon fas fa-folder-open"></i></a>
                                                 </div>
-                                                <div class="col-md p-0 mt-1">
+                                                <!-- <div class="col-md p-0 mt-1">
                                                     <a class="btn btn-sm btn-outline-info"
                                                         href="<?= site_url('edit/'.$rs->projectId);?>"><i
                                                             class="nav-icon fas fa-edit"></i></a>
-                                                </div>
-
+                                                </div> -->
                                                 <div class="col-md p-0 mt-1">
                                                     <a class="btn btn-sm btn-outline-danger" href="javascript:void(0);"
                                                         onclick="deleteProject(<?= $rs->projectId ; ?>)"><i

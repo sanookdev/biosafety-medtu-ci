@@ -27,7 +27,8 @@
                             <?
                             if(!empty($this->session->flashdata('err_status'))){
                                 if($this->session->flashdata('err_status') == '1'){
-                                    echo "<p class = 'alert alert-success'>".($this->session->flashdata('err_message')). "</p>";
+                                    echo "<script>alertify.success('".$this->session->flashdata('err_message')."')</script>";
+                                    // echo "<p class = 'alert alert-success'>".($this->session->flashdata('err_message')). "</p>";
                                 }
                             }
                             
@@ -43,10 +44,6 @@
                                         <input type="text" class="form-control form-control-sm" name="projectCode"
                                             value="<?= $results->projectCode;?>" aria-describedby="projectHelp" readonly
                                             required>
-                                        <!-- <small id="projectHelp" class="form-text text-muted">We'll never share your
-                                            email
-                                            with
-                                            anyone else.</small> -->
                                     </div>
                                     <div class="col-md-4">
                                         <label for="projectCertificateNo">เลขที่หนังสือรับรอง</label>
@@ -223,22 +220,56 @@
                                             ?>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <input type="submit" value="อัพเดต" class="btn btn-sm btn-success float-right">
+                                <div class="form-row">
+                                    <div class="col-md-12">
+
+                                        <input type="submit" value="อัพเดต" class="btn btn-sm btn-success float-right">
+                                    </div>
                                 </div>
                             </form>
 
-                            <? 
-                                // echo "<pre>";
-                                // print_r($results);
-                                // echo "</pre>";
-                                ?>
 
                             <?}else{?>
                             <p class="alert alert-danger">
                                 <?= $message;?>
                             </p>
                             <?}?>
+                            <hr>
+
+                            <?
+                       
+                                $i = 0 ;
+                                foreach ($documentType as $value) {
+                                    if($i % 2 == 0){
+                                        echo "<div class = 'form-row'>";
+                                    }
+                                    ?>
+                            <div class="col-md-6">
+                                <form
+                                    action="<?php echo site_url('upload/save_file/'.$results->projectId.'/'.$value->id . '/' . $value->keyid); ?>"
+                                    method="post" enctype="multipart/form-data">
+                                    <label for="file">
+                                        <? 
+                                                        echo $value->name;
+                                                        foreach ($documents as $doc) {
+                                                            if($doc->documentType == $value->id){
+                                                                echo nbs(2)."<a href = '".base_url('uploads/'.$results->projectId.'/'.$doc->documentNameFile)."'>" .$doc->documentNameFile . "</a>";
+                                                            }
+                                                        }
+                                                    ?>
+                                    </label>
+                                    <br>
+                                    <input type="file" name="<?= $value->keyid;?>" id="<?= $value->keyid;?>"><br>
+                                    <input type="submit" value="Upload">
+                                </form>
+                            </div>
+                            <?
+                                    if($i % 2+1 == 0){
+                                        echo "</div>";
+                                        }
+                                        $i++;
+                                }
+                            ?>
                         </div>
                     </div>
                     <!-- /.card -->
