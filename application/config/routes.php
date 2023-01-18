@@ -64,4 +64,6 @@ $route['report'] = 'Admin/report';
 $route['excel/import']  = 'Upload/import';
 $route['edit/(:any)'] = 'project/edit/$1';
 $route['show/(:any)'] = 'project/show/$1';
+$route['addextend/(:any)'] = 'project/addExtend/$1';
+$route['addprogress/(:any)'] = 'project/addProgress/$1';
 $route['documents/(:any)'] = 'project/documents/$1';

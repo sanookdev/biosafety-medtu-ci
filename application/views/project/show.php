@@ -171,6 +171,33 @@
                                         <p class="p-2"><?= $results->projectComment?></p>
                                     </div>
                                 </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h5 class="mb-0">
+                                            การขยายเวลารับรองโครงการ <a href="#">เพิ่ม</a>
+                                        </h5>
+                                        <p class="p-2">
+                                            <?  
+                                            foreach ($results_date_extend as $key => $value) {
+                                                echo "(".($key+1).") : ".$value->certExtendedDate ."<br>";
+                                            }
+                                            ?>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="mb-0">
+                                            การส่งรายงานความก้าวหน้า <a href="#">เพิ่ม</a>
+                                        </h5>
+                                        <p class="p-2">
+                                            <?  
+                                            foreach ($results_date_progress as $key => $value) {
+                                                echo "(".($key+1).") : ".$value->progressReportDate ."<br>";
+                                            }
+                                            ?>
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- status -->
@@ -198,6 +225,8 @@
                             </div>
 
                         </div>
+
+
 
                         <a href="<?= site_url('edit/'.$results->projectId) ;?>"
                             class="btn btn-sm btn-warning ">แก้ไข</a>

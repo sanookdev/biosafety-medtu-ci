@@ -30,6 +30,24 @@ class Project_model extends CI_Model{
         }
     }
 
+    // select ข้อมูลการขยายเวลารับรองโครงการที่ผู้วิจัยขอ
+    public function getExtended($projectId){
+        $this->db->select('*');
+        $this->db->where('projectId',$projectId);
+        $this->db->order_by('created','ASC');
+        $query = $this->db->get('certextendeddate');
+        return $query->result() ;
+    }
+
+    // select ข้อมูลการส่งรายงานความก้าวหน้าผู้วิจัย
+    public function getProgress($projectId){
+        $this->db->select('*');
+        $this->db->where('projectId',$projectId);
+        $this->db->order_by('created','ASC');
+        $query = $this->db->get('progressreport');
+        return $query->result() ;
+    }
+
     public function getDocuments($projectId){
         $this->db->select('projectdocuments.*, documenttype.name');
         $this->db->from('projectdocuments');

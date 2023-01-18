@@ -25,6 +25,8 @@ class Project extends CI_Controller {
 
     public function show($projectId){
         $data['results'] = $this->Project_model->getProject($projectId);
+        $data['results_date_extend'] = $this->Project_model->getExtended($projectId);
+        $data['results_date_progress'] = $this->Project_model->getProgress($projectId);
         $data['documents'] = $this->Project_model->getDocuments($projectId);
         $data['documentType'] = $this->Project_model->getDocumentType();
         if($data['results']){
@@ -41,6 +43,13 @@ class Project extends CI_Controller {
         $this->load->view('Layouts/sidebar');
 		$this->load->view('project/show',$data);
         $this->load->view('Layouts/footer');
+    }
+
+    public function addExtend($projectId){
+
+    }
+    public function addProgress($projectId){
+        
     }
 
     public function add()
