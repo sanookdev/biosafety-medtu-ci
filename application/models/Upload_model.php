@@ -10,22 +10,28 @@ class Upload_model extends CI_Model {
 
 	public function save_file($data){
 
-		$checkHasFile = $this->hasFile($data->projects_projectId,$data->documentType);
-		echo $checkHasFile;
-		// if(count($checkHasFile)){
-		// 	if($this->db->update('projectdocuments',$data)){
-		// 		return 1;
-		// 	}else{
-		// 		return 0;
-		// 	}
-		// }
-		// else{
-		// 	if($this->db->insert('projectdocuments',$data)){
-		// 		return 1;
-		// 	}else{
-		// 		return 0;
-		// 	}
-		// }
+		// print_r($data);
+		$checkHasFile = $this->hasFile($data['projects_projectId'],$data['documentType']);
+		// echo $checkHasFile;
+		if(count($checkHasFile) > 0){
+			$targetDelete =  "./uploads/".$checkHasFile[0]->projects_projectId . "/" . $checkHasFile[0]->documentNameFile;
+			if($this->db->update('projectdocuments',$data)){
+				if(unlink($targetDelete)){
+					return 1;
+				}else{
+					return 0;
+				}
+			}else{
+				return 0;
+			}
+		}
+		else{
+			if($this->db->insert('projectdocuments',$data)){
+				return 1;
+			}else{
+				return 0;
+			}
+		}
 	}
 
 	public function hasFile($projectId,$documentType){

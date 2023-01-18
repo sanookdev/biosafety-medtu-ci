@@ -253,7 +253,7 @@
                                                         echo $value->name;
                                                         foreach ($documents as $doc) {
                                                             if($doc->documentType == $value->id){
-                                                                echo nbs(2)."<a href = '".base_url('uploads/'.$results->projectId.'/'.$doc->documentNameFile)."'>" .$doc->documentNameFile . "</a>";
+                                                                echo nbs(2)."<a href = '".base_url('uploads/'.$results->projectId.'/'.$doc->documentNameFile)."'>download file</a>";
                                                             }
                                                         }
                                                     ?>

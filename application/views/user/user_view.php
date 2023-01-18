@@ -64,7 +64,7 @@
                                                 </div>
                                                 <div class="col-md p-0 mt-1">
                                                     <a class="btn btn-sm btn-outline-secondary"
-                                                        href="<?= site_url('files/'.$rs->projectId);?>"><i
+                                                        href="<?= site_url('documents/'.$rs->projectId);?>"><i
                                                             class="nav-icon fas fa-folder-open"></i></a>
                                                 </div>
                                             </div>

@@ -31,9 +31,11 @@ class Project_model extends CI_Model{
     }
 
     public function getDocuments($projectId){
-        $this->db->select('*');
+        $this->db->select('projectdocuments.*, documenttype.name');
+        $this->db->from('projectdocuments');
+        $this->db->join('documenttype' , 'documenttype.id = projectdocuments.documentType');
         $this->db->where('projects_projectId',$projectId);
-        $query = $this->db->get('projectdocuments');
+        $query = $this->db->get();
         return $query->result();
     }
 

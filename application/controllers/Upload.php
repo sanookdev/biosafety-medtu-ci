@@ -48,8 +48,6 @@ class Upload extends CI_Controller {
 	
 		// Get the file from the form
 		$file = $_FILES[$type];
-	
-		// print_r($file);
 		// Check if the file was uploaded successfully
 		if ($file['error'] == UPLOAD_ERR_OK) {
 		// Set the destination folder
