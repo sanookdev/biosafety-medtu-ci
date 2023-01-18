@@ -37,7 +37,7 @@
                                 <div class="form-row">
                                     <div class="col-md-4">
                                         <label for="projectCode">รหัสโครงการ</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectCode"
+                                        <input type="date" class="form-control form-control-sm" name="projectCode"
                                             aria-describedby="projectHelp" required>
                                         <!-- <small id="projectHelp" class="form-text text-muted">We'll never share your
                                             email
@@ -46,26 +46,26 @@
                                     </div>
                                     <div class="col-md-4">
                                         <label for="projectCertificateNo">เลขที่หนังสือรับรอง</label>
-                                        <input type="text" class="form-control form-control-sm"
+                                        <input type="date" class="form-control form-control-sm"
                                             name="projectCertificateNo" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="medcode">MEDCODE เจ้าของโครงการ</label>
-                                        <input type="text" class="form-control form-control-sm" name="medcode" required>
+                                        <input type="date" class="form-control form-control-sm" name="medcode" required>
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="col-md-12">
                                         <label for="projectNameTH">ชื่อโครงการภาษาไทย</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectNameTH"
+                                        <input type="date" class="form-control form-control-sm" name="projectNameTH"
                                             required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-12">
                                         <label for="projectNameEN">ชื่อโครงการภาษาอังกฤษ</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectNameEN"
+                                        <input type="date" class="form-control form-control-sm" name="projectNameEN"
                                             required>
                                     </div>
                                 </div>
@@ -73,24 +73,24 @@
                                 <div class="form-row">
                                     <div class="col-md-3">
                                         <label for="projectPosition">คำนำหน้า</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectPosition"
+                                        <input type="date" class="form-control form-control-sm" name="projectPosition"
                                             required>
                                     </div>
                                     <div class="col-md-9">
                                         <label for="projectLeader">หัวหน้าโครงการ</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectLeader"
+                                        <input type="date" class="form-control form-control-sm" name="projectLeader"
                                             required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <label for="projectDepartment">ภาควิชา/แผนก</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectDepartment"
+                                        <input type="date" class="form-control form-control-sm" name="projectDepartment"
                                             required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="projectFaculty">คณะ</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectFaculty"
+                                        <input type="date" class="form-control form-control-sm" name="projectFaculty"
                                             required>
                                     </div>
                                 </div>
@@ -98,29 +98,29 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <label for="projectMobile">เบอร์โทรศัพท์</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectMobile"
+                                        <input type="date" class="form-control form-control-sm" name="projectMobile"
                                             required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="projectEmail">อีเมลล์</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectEmail"
+                                        <input type="date" class="form-control form-control-sm" name="projectEmail"
                                             required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-4">
                                         <label for="projectType">ชนิดประเภทโครงการ</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectType"
+                                        <input type="date" class="form-control form-control-sm" name="projectType"
                                             required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="projectSecurityLabLevel">ระดับความปลอดภัยของห้อง Lab</label>
-                                        <input type="text" class="form-control form-control-sm"
+                                        <input type="date" class="form-control form-control-sm"
                                             name="projectSecurityLabLevel" required>
                                     </div>
                                     <div class="col-md-4">
                                         <label for="projectRoom">ห้องที่ใช้งาน</label>
-                                        <input type="text" class="form-control form-control-sm" name="projectRoom"
+                                        <input type="date" class="form-control form-control-sm" name="projectRoom"
                                             required>
                                     </div>
                                 </div>
@@ -205,3 +205,41 @@
     </section>
     <!-- /.content -->
 </div>
+
+
+<script>
+$(document).ready(function() {
+    // $('[name =projectRequestDate]').datetimepicker({
+    //     format: 'Y-m-d',
+    //     timepicker: false
+    // });
+    // $('[name =projectPresentCeoDate]').datetimepicker({
+    //     format: 'Y-m-d',
+    //     timepicker: false
+    // });
+    // $('[name =projectPassToUniversityDate]').datetimepicker({
+    //     format: 'Y-m-d',
+    //     timepicker: false
+    // });
+    // $('[name =projectApprovalDate]').datetimepicker({
+    //     format: 'Y-m-d',
+    //     timepicker: false
+    // });
+    // $('[name =projectProcessDate]').datetimepicker({
+    //     format: 'Y-m-d',
+    //     timepicker: false
+    // });
+    // $('[name =projectCertificateExpireDate]').datetimepicker({
+    //     format: 'Y-m-d',
+    //     timepicker: false
+    // });
+    // $('[name =projectDateClose]').datetimepicker({
+    //     format: 'Y-m-d',
+    //     timepicker: false
+    // });
+
+    // $('input[name = projectDateClose]').on('change', function() {
+    //     console.log($(this).val());
+    // })
+})
+</script>

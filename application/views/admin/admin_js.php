@@ -14,5 +14,8 @@
 <script src="<?= base_url('js/overlayScrollbars/js/jquery.overlayScrollbars.min.js');?>"></script>
 <script src="<?= base_url('js/admin/js/adminlte.js');?>"></script>
 <script src="<?= base_url('js/sidebarEvents.js');?>"></script>
+<script src="<?= base_url('js/datepicker/php-date-formatter.js');?>"></script>
+
+<script src="<?= base_url('js/datepicker/jquery.datetimepicker.js');?>"></script>
 
 <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>

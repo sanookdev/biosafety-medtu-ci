@@ -3,6 +3,7 @@
 <?= link_tag('css/admin/adminlte.min.css');?>
 <?= link_tag('css/admin/styleAdmin.css');?>
 <?= link_tag('css/gsi-step-indicator.css');?>
+<?= link_tag('css/datepicker/jquery.datetimepicker.css');?>
 <!-- Ionicons -->
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <!-- data table css -->

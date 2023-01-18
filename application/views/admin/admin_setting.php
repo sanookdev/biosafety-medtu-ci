@@ -9,9 +9,9 @@
                             <div class="card-title">
                                 <h4>นำเข้าข้อมูล</h4>
                             </div>
-                            <button class="btn btn-sm btn-success float-right">
-                                <i class="nav-icon fas fa-plus"></i> เพิ่มโปรเจค
-                            </button>
+                            <a class="btn btn-sm btn-success float-right" href="<?= site_url('project/add')?>">
+                                <i class=" nav-icon fas fa-plus"></i> เพิ่มโปรเจค
+                            </a>
                         </div>
                         <div class="card-body">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">

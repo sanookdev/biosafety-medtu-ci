@@ -72,6 +72,21 @@ class Project_model extends CI_Model{
         }
     }
 
+    public function createExtend($data){
+        if($this->db->insert('certextendeddate',$data)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+    public function createProgress($data){
+        if($this->db->insert('progressreport',$data)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
     public function update($data){
         $this->db->where('projectId',$data['projectId']);
         if($this->db->update('projects',$data)){

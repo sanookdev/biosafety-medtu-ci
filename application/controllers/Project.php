@@ -46,10 +46,24 @@ class Project extends CI_Controller {
     }
 
     public function addExtend($projectId){
-
+        $data['project'] = $this->Project_model->getProject($projectId);
+        $this->load->view('admin/admin_css');
+        $this->load->view('admin/admin_js');
+        $this->load->view('Layouts/header');
+        $this->load->view('Layouts/navbar');
+        $this->load->view('Layouts/sidebar');
+		$this->load->view('project/addExtend',$data);
+        $this->load->view('Layouts/footer');
     }
     public function addProgress($projectId){
-        
+        $data['project'] = $this->Project_model->getProject($projectId);
+        $this->load->view('admin/admin_css');
+        $this->load->view('admin/admin_js');
+        $this->load->view('Layouts/header');
+        $this->load->view('Layouts/navbar');
+        $this->load->view('Layouts/sidebar');
+		$this->load->view('project/addProgress',$data);
+        $this->load->view('Layouts/footer');
     }
 
     public function add()
@@ -72,6 +86,27 @@ class Project extends CI_Controller {
             $this->session->set_flashdata('err_status', 0);
         }
         redirect('report');
+    }
+    public function createExtend(){
+        if($this->Project_model->createExtend($this->input->post())){
+            $this->session->set_flashdata('err_message', 'success');
+            $this->session->set_flashdata('err_status', 1);
+        }else{
+            $this->session->set_flashdata('err_message', 'Fails');
+            $this->session->set_flashdata('err_status', 0);
+        }
+        redirect('show/'.$this->input->post('projectId'));
+    }
+
+    public function createProgress(){
+        if($this->Project_model->createProgress($this->input->post())){
+            $this->session->set_flashdata('err_message', 'success');
+            $this->session->set_flashdata('err_status', 1);
+        }else{
+            $this->session->set_flashdata('err_message', 'Fails');
+            $this->session->set_flashdata('err_status', 0);
+        }
+        redirect('show/'.$this->input->post('projectId'));
     }
 
     public function edit($projectId)
