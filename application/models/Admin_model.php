@@ -7,6 +7,7 @@ class Admin_model extends CI_Model{
 
     public function fetch_projectAll(){
         $this->db->select('*');
+        $this->db->order_by('projectCreated','DESC');
         $query = $this->db->get('projects');
         return $query->result();
     }

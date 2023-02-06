@@ -99,6 +99,7 @@
 <script>
 var rootUrl = location.hostname;
 $(document).ready(function() {
+    var option = <?= (isset($_REQUEST['option'])) ? json_encode($_REQUEST['option']) : "''";?>;
     $('.table').DataTable({
         language: {
             searchPlaceholder: "Search records"
@@ -109,6 +110,7 @@ $(document).ready(function() {
                 .columns()
                 .every(function() {
                     var column = this;
+                    console.log(column)
                     if (column[0] == 1) {
                         let text = $(column.header())[0]
                             .innerHTML;
@@ -123,7 +125,7 @@ $(document).ready(function() {
                                 var val = $.fn.dataTable
                                     .util.escapeRegex($(
                                         this).val());
-
+                                console.log(val)
                                 column.search(val ?
                                         '^' +
                                         val + '$' : '',
@@ -135,12 +137,19 @@ $(document).ready(function() {
                             .data()
                             .unique()
                             .sort()
-                            .each(function(d, j) {
-                                select.append(
-                                    '<option value="' +
-                                    d + '">' + d +
-                                    '</option>');
-                            });
+                        select.append('<option ' + (('รออนุมัติ' == option) ? 'selected' : '') +
+                            ' value="รออนุมัติ">รออนุมัติ</option>');
+                        select.append('<option ' + (('อนุมัติ' == option) ? 'selected' : '') +
+                            ' value="อนุมัติ">อนุมัติ</option>');
+                        select.append('<option ' + (('ปิดโครงการ' == option) ? 'selected' :
+                                '') +
+                            ' value="ปิดโครงการ">ปิดโครงการ</option>');
+
+                        column.search(option ?
+                                '^' +
+                                option + '$' : '',
+                                true, false)
+                            .draw();
                     }
 
                 });

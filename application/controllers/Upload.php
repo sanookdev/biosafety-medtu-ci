@@ -45,41 +45,47 @@ class Upload extends CI_Controller {
 
 	// Save file function
 	public function save_file($projectId, $fileType , $type) {
-	
-		// Get the file from the form
 		$file = $_FILES[$type];
-		// Check if the file was uploaded successfully
-		if ($file['error'] == UPLOAD_ERR_OK) {
-		// Set the destination folder
-		$folder = './uploads/'.$projectId . '/';
-
-		if(!is_dir($folder)){
-			mkdir($folder);
-		}
-	
-		// Set the new file name
-		$file_name = uniqid() . '_' . $file['name'];
-	
-		// Save the file to the folder
-		if (move_uploaded_file($file['tmp_name'], $folder . $file_name)) {
-			$data = array(
-				'documentNameFile' => $file_name,
-				'documentType' => $fileType,
-				'projects_projectId' => $projectId
-			);
-			
-			if($this->upload_model->save_file($data)){
-				$this->session->set_flashdata('err_message', $file['name']. ' saved successfully');
-				$this->session->set_flashdata('err_status', 1);
+		$allowed = array('gif', 'png', 'jpg','docx','JPG','PNG','DOCX','GIF');
+		$file = $_FILES[$type];
+		$typeFile = $file['name'];
+		$lastElement = explode('.', $typeFile);
+		$lastElement = end($lastElement);
+		if(in_array($lastElement,$allowed)){
+			if ($file['error'] == UPLOAD_ERR_OK) {
+				$folder = './uploads/'.$projectId . '/';
+				if(!is_dir($folder)){
+					mkdir($folder);
+				}
+		
+				$file_name = uniqid() . '_' . $file['name'];
+		
+				if (move_uploaded_file($file['tmp_name'], $folder . $file_name)) {
+					$data = array(
+						'documentNameFile' => $file_name,
+						'documentType' => $fileType,
+						'projects_projectId' => $projectId
+					);
+					
+					if($this->upload_model->save_file($data)){
+						$this->session->set_flashdata('err_message', $file['name']. ' saved successfully');
+						$this->session->set_flashdata('err_status', 1);
+					}
+				} else {
+					$this->session->set_flashdata('err_message', 'There was an error saving the file');
+					$this->session->set_flashdata('err_status', 0);
+				}
+			} else {
+				$this->session->set_flashdata('err_message', 'There was an error saving the file');
+				$this->session->set_flashdata('err_status', 0);
 			}
-		} else {
-			$this->session->set_flashdata('err_message', 'There was an error saving the file');
+		}else{
+			// echo "1";
+			$this->session->set_flashdata('err_message', 'Type of file is invalid ! <br>You can use only<br>"jpg,png,gif and docx"');
 			$this->session->set_flashdata('err_status', 0);
+			// exit();
 		}
-		} else {
-			$this->session->set_flashdata('err_message', 'There was an error saving the file');
-			$this->session->set_flashdata('err_status', 0);
-		}
+				
 		redirect('edit/'.$projectId);
 	}
   

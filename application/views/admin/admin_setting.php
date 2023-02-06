@@ -20,17 +20,18 @@
                                         role="tab" aria-controls="projects" aria-selected="true">นำเข้าไฟล์ข้อมูล
                                         Projects</a>
                                 </li>
-                                <li class="nav-item" role="presentation">
+                                <!-- <li class="nav-item" role="presentation">
                                     <a class="nav-link" id="participants-tab" data-toggle="tab" href="#participants"
                                         role="tab" aria-controls="participants"
                                         aria-selected="false">นำเข้าไฟล์ข้อมูลผู้ร่วมวิจัย</a>
-                                </li>
+                                </li> -->
                             </ul>
                             <div class="tab-content" id="myTabContent">
                                 <div class="tab-pane fade show active" id="projects" role="tabpanel"
                                     aria-labelledby="projects-tab">
-
-
+                                    <p class="pl-3 pt-2"><a
+                                            href="<?= base_url('files/Projects Import Example.xlsx')?>">Download
+                                            ไฟล์ตัวอย่าง</a></p>
                                     <form id="projects-upload" autocomplete="off" class="mt-2">
                                         <div class="form-row mt-3">
                                             <div class="col-md-12 input-group">
@@ -50,6 +51,9 @@
                                 </div>
                                 <div class="tab-pane fade" id="participants" role="tabpanel"
                                     aria-labelledby="participants-tab">
+                                    <p class="pl-3 pt-2"><a
+                                            href="<?= base_url('files/Projects Import Example.xlsx')?>">Download
+                                            ไฟล์ตัวอย่าง</a></p>
                                     <form id="participants-upload" autocomplete="off">
                                         <div class="form-row mt-3">
                                             <div class="col-md-12 input-group">
